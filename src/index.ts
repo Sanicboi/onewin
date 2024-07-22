@@ -4,6 +4,7 @@ import TelegramBot from "node-telegram-bot-api";
 import express from 'express';
 import { Signup } from "./entity/Signup";
 import dayjs from "dayjs";
+import cron from 'node-cron';
 
 AppDataSource.initialize().then(async () => {
 
@@ -98,7 +99,8 @@ AppDataSource.initialize().then(async () => {
             user.oneWinId = signup.id;
             user.endDate = dayjs().add(3, 'days').toDate();
             await userRepo.save(user);
-            await bot.sendMessage(msg.from.id, `✅Поздравляю! Вам открыты все возможности бота на 3 дня🤖\n\n Дата сброса: ${user.endDate.toUTCString()}\n🚀Чтобы получить сигнал, нажми соответствующую кнопку ниже:`, {
+            await bot.sendPhoto(msg.from.id, 'https://static-pp.1win-cdn.com/promo-files-uploads/t1uZmiQpexLN1QyrwlB1RgNwIAbKVrdGd0SFiIL3DwnXNB5GR0EoW_MRDp05Dq8z-5lo5qDG1Sy8SBkGs0NJVDsN2xZATTcmHsEm.jpg',{
+                caption: `✅Поздравляю! Вам открыты все возможности бота на 3 дня🤖\n\n Дата сброса: ${user.endDate.toUTCString()}\n🚀Чтобы получить сигнал, нажми соответствующую кнопку ниже:`,
                 reply_markup: {
                     inline_keyboard: [
                         [
@@ -149,7 +151,9 @@ AppDataSource.initialize().then(async () => {
             }
 
             if (!user.deposited) {
-                await bot.sendMessage(q.from.id, 'Сначала необходимо пополнить баланс. После пополнения бот автоматически отправит Вам сообщение.');
+                await bot.sendPhoto(q.from.id, 'https://static-pp.1win-cdn.com/promo-files-uploads/t1uZmiQpexLN1QyrwlB1RgNwIAbKVrdGd0SFiIL3DwnXNB5GR0EoW_MRDp05Dq8z-5lo5qDG1Sy8SBkGs0NJVDsN2xZATTcmHsEm.jpg', {
+                    caption: 'Сначала необходимо пополнить баланс. После пополнения бот автоматически отправит Вам сообщение.'
+                });
                 return;
             }
             
@@ -161,5 +165,6 @@ AppDataSource.initialize().then(async () => {
         }
     });
 
+    cron
     app.listen(5143);
 }).catch(error => console.log(error))
