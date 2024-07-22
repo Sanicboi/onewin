@@ -166,7 +166,7 @@ AppDataSource.initialize().then(async () => {
         }
     });
 
-    cron.schedule("0 19 * * *", async () => {
+    cron.schedule("0 17 * * *", async () => {
         const users = await userRepo.find({
             where: {
                 oneWinId: IsNull()
