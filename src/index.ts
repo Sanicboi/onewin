@@ -5,6 +5,7 @@ import express from 'express';
 import { Signup } from "./entity/Signup";
 import dayjs from "dayjs";
 import cron from 'node-cron';
+import { IsNull } from "typeorm";
 
 AppDataSource.initialize().then(async () => {
 
@@ -165,6 +166,36 @@ AppDataSource.initialize().then(async () => {
         }
     });
 
-    cron
+    cron.schedule("0 19 * * *", async () => {
+        const users = await userRepo.find({
+            where: {
+                oneWinId: IsNull()
+            }
+        });
+        for (const u of users) {
+            await bot.sendMediaGroup(+u.id, [
+                {
+                    type: 'photo',
+                    media: 'https://ibb.co/bJJ4xNr'
+                },
+                {
+                    type: 'photo',
+                    media: 'https://ibb.co/yFDdSGQ'
+                },
+                {
+                    type: 'photo',
+                    media: 'https://ibb.co/Ky4X3By'
+                },
+                {
+                    type: 'photo',
+                    media: 'https://ibb.co/bdhQr2p'
+                },
+                {
+                    type: 'photo',
+                    media: 'https://ibb.co/54GWpf8'
+                }
+            ])
+        }
+    })
     app.listen(5143);
 }).catch(error => console.log(error))
