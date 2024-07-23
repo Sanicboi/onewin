@@ -45,10 +45,16 @@ AppDataSource.initialize().then(async () => {
     });
 
     bot.onText(/\/start/, async (msg) => {
-        const user = new User();
-        user.id = String(msg.from.id);
-        user.username = msg.from.username;
-        await userRepo.save(user);
+        let user = await userRepo.findOneBy({
+            id: String(msg.from.id)
+        });
+        if (!user) {
+            user = new User();
+            user.id = String(msg.from.id);
+            user.username = msg.from.username;
+            await userRepo.save(user);
+        }
+
 
         bot.sendPhoto(msg.from.id, 'https://ibb.co/DY8hqLG', {
             caption: 'ℹ️ Выбери тариф, для доступа в мою приватную группу с сигналами.\n\n📲Повторюсь, я готов дать тебе бесплатный доступ на 3 дня, чтобы ты убедился в том, что этот бот работает и на нем можно зарабатывать в десятки раз больше, чем стоимость подписки!',
