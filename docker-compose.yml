@@ -15,4 +15,5 @@ services:
     build: .
     ports:
       - "5143:5143"
+    restart: always
 
