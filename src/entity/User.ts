@@ -25,4 +25,9 @@ export class User {
         default: false
     })
     deposited: boolean;
+
+    @Column({
+        default: false
+    })
+    cameWithLink: boolean;
 }
