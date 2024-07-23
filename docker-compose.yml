@@ -11,4 +11,8 @@ services:
       POSTGRES_USER: "test"
       POSTGRES_PASSWORD: "test"
       POSTGRES_DB: "test"
+  bot:
+    build: .
+    ports:
+      - "5143:5143"
 

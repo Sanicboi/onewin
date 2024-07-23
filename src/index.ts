@@ -50,7 +50,7 @@ AppDataSource.initialize().then(async () => {
         user.username = msg.from.username;
         await userRepo.save(user);
 
-        bot.sendPhoto(msg.from.id, 'https://static-pp.1win-cdn.com/promo-files-uploads/eQOyBP2PSjsiAinCwxyWgUOrMpk-JzVNdOk9BCSBWGQRnRrngOJifMgti6soVy8QAa4jD7IosRsir_iHB1Gsr1epwDFBpRA5C8qW.jpg', {
+        bot.sendPhoto(msg.from.id, 'https://ibb.co/DY8hqLG', {
             caption: 'ℹ️ Выбери тариф, для доступа в мою приватную группу с сигналами.\n\n📲Повторюсь, я готов дать тебе бесплатный доступ на 3 дня, чтобы ты убедился в том, что этот бот работает и на нем можно зарабатывать в десятки раз больше, чем стоимость подписки!',
             reply_markup: {
                 inline_keyboard: [
@@ -100,7 +100,7 @@ AppDataSource.initialize().then(async () => {
             user.oneWinId = signup.id;
             user.endDate = dayjs().add(3, 'days').toDate();
             await userRepo.save(user);
-            await bot.sendPhoto(msg.from.id, 'https://static-pp.1win-cdn.com/promo-files-uploads/t1uZmiQpexLN1QyrwlB1RgNwIAbKVrdGd0SFiIL3DwnXNB5GR0EoW_MRDp05Dq8z-5lo5qDG1Sy8SBkGs0NJVDsN2xZATTcmHsEm.jpg',{
+            await bot.sendPhoto(msg.from.id, 'https://ibb.co/4FRk86m',{
                 caption: `✅Поздравляю! Вам открыты все возможности бота на 3 дня🤖\n\n Дата сброса: ${user.endDate.toUTCString()}\n🚀Чтобы получить сигнал, нажми соответствующую кнопку ниже:`,
                 reply_markup: {
                     inline_keyboard: [
@@ -121,7 +121,7 @@ AppDataSource.initialize().then(async () => {
 
     bot.on('callback_query', async (q) => {
         if (q.data === 'free') {
-            bot.sendPhoto(q.from.id, 'https://static-pp.1win-cdn.com/promo-files-uploads/5LXT6nzoHhd4NTW0sFXYQBL8Rr0CujPA2m61AIe41VbL5ABzWYvTN8rnx4VknHxP32UFW4tD_jZQyEU00igEGTDmIeweGdd3Ghj4.jpg', {
+            bot.sendPhoto(q.from.id, 'https://ibb.co/C76kh7X', {
                 caption: '📲Для начала необходимо провести регистрацию на 1win (провайдер игры LuckyJet). Чтобы бот успешно проверил регистрацию, нужно соблюсти важные условия:\n\n 1️⃣Аккаунт обязательно должен быть НОВЫМ! Если у вас уже есть аккаунт и при нажатии на кнопку «РЕГИСТРАЦИЯ» вы попадаете на старый, необходимо выйти с него и заново нажать на кнопку «РЕГИСТРАЦИЯ», после чего по новой зарегистрироваться! \n\n2️⃣Чтобы бот смог проверить вашу регистрацию, обязательно нужно ввести промокод "LIVECAT" при регистрации!\n После регистрации напишите боту ваш ID.',
                 reply_markup: {
                     inline_keyboard: [
@@ -152,7 +152,7 @@ AppDataSource.initialize().then(async () => {
             }
 
             if (!user.deposited) {
-                await bot.sendPhoto(q.from.id, 'https://static-pp.1win-cdn.com/promo-files-uploads/t1uZmiQpexLN1QyrwlB1RgNwIAbKVrdGd0SFiIL3DwnXNB5GR0EoW_MRDp05Dq8z-5lo5qDG1Sy8SBkGs0NJVDsN2xZATTcmHsEm.jpg', {
+                await bot.sendPhoto(q.from.id, 'https://ibb.co/4FRk86m', {
                     caption: 'Сначала необходимо пополнить баланс. После пополнения бот автоматически отправит Вам сообщение.'
                 });
                 return;
