@@ -37,7 +37,7 @@ AppDataSource.initialize().then(async () => {
             });
         }
 
-        res.redirect('https://1wcght.life/casino/list?open=register&p=yhe9');
+        res.redirect('https://1wqsg.com/casino/list?open=register&p=8icw');
     });
     app.get('/firstdeposit/:id', async (req, res) => {
         const user = await userRepo.findOneBy({
@@ -181,7 +181,7 @@ AppDataSource.initialize().then(async () => {
                             [
                                 {
                                     text: '💲Пополнить',
-                                    url: 'https://1wcght.life/casino/list?open=register&p=yhe9'
+                                    url: 'https://1wqsg.com/casino/list?open=register&p=8icw'
                                 },
                                 {
                                     text: '🔍Я пополнил',
@@ -222,7 +222,7 @@ AppDataSource.initialize().then(async () => {
                         [
                             {
                                 text: '💲Пополнить',
-                                url: 'https://1wcght.life/casino/list?open=register&p=yhe9'
+                                url: 'https://1wqsg.com/casino/list?open=register&p=8icw'
                             },
                             {
                                 text: '🔍Я пополнил',
