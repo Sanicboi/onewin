@@ -18,6 +18,10 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "typeorm": "typeorm-ts-node-commonjs"
+      "typeorm": "typeorm-ts-node-commonjs",
+      "st2": "ts-node src/index2.ts",
+      "st3": "ts-node src/index3.ts",
+      "st4": "ts-node src/index4.ts",
+      "st5": "ts-node src/index5.ts"
    }
 }

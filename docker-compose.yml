@@ -16,4 +16,20 @@ services:
     ports:
       - "5143:5143"
     restart: always
+  bot2:
+    build: .
+    command: "npm run st2"
+    restart: always
+  bot3:
+    build: .
+    command: "npm run st3"
+    restart: always
+  bot4:
+    build: .
+    command: "npm run st4"
+    restart: always
+  bot5:
+    build: .
+    command: "npm run st5"
+    restart: always
 

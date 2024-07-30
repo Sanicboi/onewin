@@ -9,7 +9,7 @@ import { IsNull } from "typeorm";
 
 AppDataSource.initialize().then(async () => {
 
-    const bot = new TelegramBot('7463901808:AAG0Lo7eTiMPE5d8P6yJXxiwybub9ImTp5M', {
+    const bot = new TelegramBot('6538757800:AAFxltnQjwxGJPlrMWiwXjWCS_hMF4Q0NVY', {
         polling: true
     });
 
@@ -18,7 +18,6 @@ AppDataSource.initialize().then(async () => {
     const userRepo = AppDataSource.getRepository(User);
 
     app.get('/signup/:id', async (req, res) => {
-        
         const found = await signupRepo.findOneBy({
             id: req.params.id,
         })
@@ -53,7 +52,9 @@ AppDataSource.initialize().then(async () => {
         if (!user) return res.status(200).end();
         user.deposited = true;
         await userRepo.save(user);
-        await bot.sendMessage(-1002235534796, `нпервый деп ванвин ${user.oneWinId}`);
+        if (!user.deposited) {
+            await bot.sendMessage(-1002235534796, `первый деп ${user.oneWinId}`);
+        }
     });
 
     bot.onText(/\/start/, async (msg) => {
@@ -68,7 +69,7 @@ AppDataSource.initialize().then(async () => {
         }
 
 
-        bot.sendPhoto(msg.from.id, 'https://ibb.co/DY8hqLG', {
+        bot.sendPhoto(msg.from.id, 'https://ibb.co/jRpzKXD', {
             caption: 'ℹ️ Выбери тариф, для доступа в мою приватную группу с сигналами.\n\n📲Повторюсь, я готов дать тебе бесплатный доступ на 3 дня, чтобы ты убедился в том, что этот бот работает и на нем можно зарабатывать в десятки раз больше, чем стоимость подписки!',
             reply_markup: {
                 inline_keyboard: [
@@ -144,7 +145,7 @@ AppDataSource.initialize().then(async () => {
 
     bot.on('callback_query', async (q) => {
         if (q.data === 'free') {
-            bot.sendPhoto(q.from.id, 'https://ibb.co/C76kh7X', {
+            bot.sendPhoto(q.from.id, 'https://ibb.co/3zgHsWw', {
                 caption: '📲Для начала необходимо провести регистрацию на 1win (провайдер игры LuckyJet). Чтобы бот успешно проверил регистрацию, нужно соблюсти важные условия:\n\n 1️⃣Аккаунт обязательно должен быть НОВЫМ! Если у вас уже есть аккаунт и при нажатии на кнопку «РЕГИСТРАЦИЯ» вы попадаете на старый, необходимо выйти с него и заново нажать на кнопку «РЕГИСТРАЦИЯ», после чего по новой зарегистрироваться! \n\n2️⃣Чтобы бот смог проверить вашу регистрацию, обязательно нужно ввести промокод "FLAMEPART" при регистрации!\n После РЕГИСТРАЦИИ бот автоматически приведет вас к следующему шагу✅',
                 reply_markup: {
                     inline_keyboard: [
@@ -181,7 +182,7 @@ AppDataSource.initialize().then(async () => {
             }
 
             if (!user.deposited) {
-                await bot.sendPhoto(q.from.id, 'https://ibb.co/4FRk86m', {
+                await bot.sendPhoto(q.from.id, 'https://ibb.co/R4f7SPR', {
                     caption: '❗️Сначала необходимо пополнить баланс.',
                     reply_markup: {
                         inline_keyboard: [
@@ -266,7 +267,7 @@ AppDataSource.initialize().then(async () => {
             });
         }
        } else if (q.data === 'menu') {
-        bot.sendPhoto(q.from.id, 'https://ibb.co/DY8hqLG', {
+        bot.sendPhoto(q.from.id, 'https://ibb.co/R4f7SPR', {
             caption: 'ℹ️ Выбери тариф, для доступа в мою приватную группу с сигналами.\n\n📲Повторюсь, я готов дать тебе бесплатный доступ на 3 дня, чтобы ты убедился в том, что этот бот работает и на нем можно зарабатывать в десятки раз больше, чем стоимость подписки!',
             reply_markup: {
                 inline_keyboard: [
@@ -292,7 +293,7 @@ AppDataSource.initialize().then(async () => {
             }
         });
        } else if (q.data === 'open') {
-        await bot.sendPhoto(q   .from.id, 'https://ibb.co/4FRk86m',{
+        await bot.sendPhoto(q   .from.id, 'https://ibb.co/R4f7SPR',{
             caption: `✅Поздравляю! Вам открыты все возможности бота на 3 дня🤖\n\n Последнее обновление: ${(new Date()).toUTCString()}\n🚀Чтобы получить сигнал, нажми соответствующую кнопку ниже:`,
             reply_markup: {
                 inline_keyboard: [
